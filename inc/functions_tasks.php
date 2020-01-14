@@ -5,7 +5,6 @@ function getTasks($where = null)
 {
     global $db;
     $query = "SELECT * FROM tasks ";
-    $query .= "JOIN users ON users.id = tasks.user_id";
     if (!empty($where)) $query .= " WHERE $where";
     $query .= " ORDER BY id";
     try {
