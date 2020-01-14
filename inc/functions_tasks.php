@@ -5,7 +5,8 @@ function getTasks($where = null)
 {
     global $db;
     $query = "SELECT * FROM tasks ";
-    if (!empty($where)) $query .= "WHERE $where";
+    $query .= "JOIN users ON users.id = tasks.user_id";
+    if (!empty($where)) $query .= " WHERE $where";
     $query .= " ORDER BY id";
     try {
         $statement = $db->prepare($query);
@@ -17,13 +18,13 @@ function getTasks($where = null)
     }
     return $tasks;
 }
-function getIncompleteTasks()
+function getIncompleteTasks($userId)
 {
-    return getTasks('status=0');
+    return getTasks("user_id = $userId AND status = 0");
 }
-function getCompleteTasks()
+function getCompleteTasks($userId)
 {
-    return getTasks('status=1');
+    return getTasks("user_id = $userId AND status = 1");
 }
 function getTask($task_id)
 {
