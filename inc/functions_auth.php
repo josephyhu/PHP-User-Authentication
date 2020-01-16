@@ -57,7 +57,7 @@ function decodeAuthCookie($prop = null)
     try {
         Firebase\JWT\JWT::$leeway=1;
         $cookie = Firebase\JWT\JWT::decode(request()->cookies->get('auth'), getenv("SECRET_KEY"), ['HS256']);
-    } catch (Exceptino $e) {
+    } catch (Exception $e) {
         return false;
     }
     if ($prop === null) {
