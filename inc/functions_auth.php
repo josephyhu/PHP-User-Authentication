@@ -29,7 +29,7 @@ function saveUserData($user)
         'sub' => (int) $user['id'],
         'exp' => $expTime,
         'iat' => time(),
-        'nbf' => time(),
+        'nbf' => time()
     ],
     getenv("SECRET_KEY"),
     'HS256'
