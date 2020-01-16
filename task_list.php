@@ -4,7 +4,7 @@ requireAuth();
 
 $pageTitle = "Task List | Time Tracker";
 $page = "tasks";
-$userId = $session->get('auth_user_id');
+$userId = decodeAuthCookie('auth_user_id');
 
 $filter = request()->get('filter');
 if ($filter=='all') {
